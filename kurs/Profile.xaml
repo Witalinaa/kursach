@@ -321,43 +321,26 @@
                     Margin="0,16,0,58">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="100"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0">
-                        <Ellipse Margin="0,10,0,10"  Width="150" Height="150"
-                            Grid.Row="0">
-                            <Ellipse.Fill>
-                                <ImageBrush x:Name="LoadImage" ImageSource="{Binding ImagePath}"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
 
-                        <TextBlock Foreground="White"
-                                   FontSize="20"
-                                   x:Name="NickNameTb"
-                                   Text="{Binding User.Login}"
-                                   HorizontalAlignment="Center"></TextBlock>
-                    </StackPanel>
-
+                    <TextBlock 
+                            Text="Аккаунт"
+                             FontSize="14"
+                             Foreground="White" Width="52"
+                          />
+                    
 
                     <StackPanel Grid.Row="1">
 
 
-                        <TextBlock 
-                            Text="Аккаунт"
-                             FontSize="14"
-                             Foreground="White" Width="52" HorizontalAlignment="Center"
-                          />
+
+                       
 
 
 
-                        <RadioButton Content="Смена фотографии"
-                             Height="50"
-                                     Margin="0,2,0,0"
-                                     
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}" Checked="RadioButton_Checked"/>
+                        
 
                         <RadioButton Content="Удаление аккаунта"
                              Height="50"

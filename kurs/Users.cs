@@ -12,24 +12,27 @@ namespace kurs
     using System;
     using System.Collections.Generic;
     
-    public partial class Client
+    public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Client()
+        public Users()
         {
-            this.Record = new HashSet<Record>();
+            this.Smena = new HashSet<Smena>();
+            this.Zakaz = new HashSet<Zakaz>();
         }
     
-        public int Id_client { get; set; }
-        public Nullable<int> Id_user { get; set; }
-        public string Name { get; set; }
-        public string SecondName { get; set; }
-        public string LastName { get; set; }
-        public string Phone { get; set; }
-        public string ImagePath { get; set; }
+        public int UserID { get; set; }
+        public string UserName { get; set; }
+        public string UserType { get; set; }
+        public string UserStatus { get; set; }
+        public string Familia { get; set; }
+        public string Otchestvo { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
     
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Record> Record { get; set; }
+        public virtual ICollection<Smena> Smena { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Zakaz> Zakaz { get; set; }
     }
 }

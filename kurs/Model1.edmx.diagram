@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d00100cbc1824210be1404966fb3c3e4" Name="Diagram1">
+        <EntityTypeShape EntityType="final_1_vasilevaModel.Blydo" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="final_1_vasilevaModel.Smena" Width="1.5" PointX="3.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="final_1_vasilevaModel.Users" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="final_1_vasilevaModel.Zakaz" Width="1.5" PointX="4.375" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="final_1_vasilevaModel.FK__Zakaz__BlydoID__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="final_1_vasilevaModel.FK__Smena__UserID__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="final_1_vasilevaModel.FK__Zakaz__WaiterID__403A8C7D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

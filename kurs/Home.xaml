@@ -50,24 +50,7 @@
                                 <RowDefinition Height="23*"/>
                                 <RowDefinition Height="75*"/>
                             </Grid.RowDefinitions>
-                            <StackPanel HorizontalAlignment="Left" Grid.RowSpan="2" Margin="0,0,90,0">
-
-                                <TextBlock Text="О нас"
-                                   Foreground="White"
-                                   FontSize="28"
-                                   Margin="20,10,9,0"/>
-
-                                <TextBlock Text="Присоединяйся к нам!"
-                                   Foreground="White"
-                                   FontSize="18"
-                                   Margin="20,10,10,0"/>
-                            </StackPanel>
-                            <Image Width="250"
-                           Height="250"
-                           Source="/Images/super5.png"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top"
-                           Margin="178,-57,0,0" Grid.Row="1"/>
+                            <StackPanel HorizontalAlignment="Left" Grid.RowSpan="2" Margin="0,0,90,0"/>
                         </Grid>
 
                     </Button>
@@ -93,12 +76,6 @@
                                 <RowDefinition Height="23*"/>
                                 <RowDefinition Height="75*"/>
                             </Grid.RowDefinitions>
-
-                            <Image Width="168"
-                           Height="162"
-                           Source="/Images/super4.png"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Grid.Row="1" Margin="-28,25,0,0"/>
                         </Grid>
 
 
@@ -115,7 +92,7 @@
                     </StackPanel.Resources>
 
 
-                    <TextBlock Text="Так-же просматриваемые"
+                    <TextBlock
                        Foreground="#313131"
                        FontSize="20"
                        HorizontalAlignment="Left"

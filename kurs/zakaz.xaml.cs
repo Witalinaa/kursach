@@ -18,9 +18,9 @@ namespace kurs
     /// <summary>
     /// Логика взаимодействия для BazaPolz.xaml
     /// </summary>
-    public partial class BazaPolz : Page
+    public partial class zakaz : Page
     {
-        public BazaPolz()
+        public zakaz()
         {
             InitializeComponent();
         }

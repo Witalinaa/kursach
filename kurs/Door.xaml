@@ -110,23 +110,6 @@
                 </Grid>
             </Border>
 
-            <Button  Style="{StaticResource LightweightButton}"
-                     x:Name="Registr"
-                       IsHitTestVisible="True" 
-                     Width="140"
-                     Height="20"
-                     Grid.Row="1"
-                     VerticalAlignment="Top"
-                     HorizontalContentAlignment="Center"
-                     VerticalContentAlignment="Center"
-                     Margin="0,160,0,0"
-                     FontWeight="Bold"
-                     FontSize="13"
-                     Foreground="White" Click="Registr_Click"
-                     >
-                Зарегистрироваться
-            </Button>
-
 
             <Button x:Name="btnDoor"
                     Width="120"

@@ -13,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace kurs
@@ -22,7 +23,7 @@ namespace kurs
     /// </summary>
     public partial class Door : Window
     {
-        private User _currentUser;
+        private Users _currentUser;
         public Door()
         {
             DataContext = _currentUser;
@@ -32,43 +33,42 @@ namespace kurs
 
         private void btnDoor_click(object sender, RoutedEventArgs e)
         {
-            if (LoginTb.Text.Trim() == "Admin" && PasswordTb.Text == "AdminKet11" || LoginTb.Text.Trim() == "Admin@mail.ru" && PasswordTb.Text == "AdminKet11")
+            if (LoginTb.Text.Trim() == "Admin" && PasswordTb.Text == "AdminKet11")
             {
                 AdminPanel admin = new AdminPanel();
                 admin.Show();
                 Close();
             }
+            
             else
             {
                 
                 bool successLogin = Logining(LoginTb.Text.Trim(), PasswordTb.Text.Trim());
-                MessageBox.Show(successLogin ? "Вы вошли в систему" : "Зарегистрируйтесь, Вас не существует");
+
+                MessageBox.Show(successLogin ? "Вы вошли в систему" : "Вас не существует");
+               
                 if (successLogin == true)
                 {
-                    MainWindow main = new MainWindow(Log(LoginTb.Text.Trim(), PasswordTb.Text.Trim()).Id_user);
+                    MainWindow main = new MainWindow();
                     main.Show();
                     Close();
                 }
 
             }
         }
+
         public static bool Logining(string email , string pass)
         {
-            return AutoLandDB.GetContext().User.Any(p => p.Email == email && p.Password == pass) ;
+            return final.GetContext().Users.Any(p => p.Login == email && p.Password == pass ) ;
         }
 
-        public User Log(string email, string pass)
+       /* public User Log(string email, string pass)
         {
-            return AutoLandDB.GetContext().User.FirstOrDefault(p => p.Email == email && p.Password == pass);
-        }
+            return EsoftEntities.GetContext().User.FirstOrDefault(p => p.Login == email && p.Password == pass);
+        }*/
 
 
-        private void Registr_Click(object sender, RoutedEventArgs e)
-        {
-            Registration registration = new Registration();
-            registration.Show();
-            Close();
-        }
+       
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

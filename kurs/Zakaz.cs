@@ -12,20 +12,15 @@ namespace kurs
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Zakaz
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
-        {
-            this.Client = new HashSet<Client>();
-        }
+        public int ZakazID { get; set; }
+        public Nullable<int> WaiterID { get; set; }
+        public Nullable<int> BlydoID { get; set; }
+        public string ZakazStatus { get; set; }
+        public System.DateTime ZakazDate { get; set; }
     
-        public int Id_user { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Client> Client { get; set; }
+        public virtual Blydo Blydo { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

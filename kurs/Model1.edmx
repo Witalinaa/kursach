@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище final_1_vasilevaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Blydo">
+          <Key>
+            <PropertyRef Name="BlydoID" />
+          </Key>
+          <Property Name="BlydoID" Type="int" Nullable="false" />
+          <Property Name="BlydoName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Zens" Type="decimal" Precision="2" Scale="0" />
+        </EntityType>
+        <EntityType Name="Smena">
+          <Key>
+            <PropertyRef Name="SmenaID" />
+          </Key>
+          <Property Name="SmenaID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="SmenaDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserStatus" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Familia" Type="varchar" MaxLength="25" />
+          <Property Name="Otchestvo" Type="varchar" MaxLength="25" />
+          <Property Name="Login" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Zakaz">
+          <Key>
+            <PropertyRef Name="ZakazID" />
+          </Key>
+          <Property Name="ZakazID" Type="int" Nullable="false" />
+          <Property Name="WaiterID" Type="int" />
+          <Property Name="BlydoID" Type="int" />
+          <Property Name="ZakazStatus" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ZakazDate" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Smena__UserID__3E52440B">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Smena" Type="Self.Smena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Smena">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zakaz__BlydoID__3F466844">
+          <End Role="Blydo" Type="Self.Blydo" Multiplicity="0..1" />
+          <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blydo">
+              <PropertyRef Name="BlydoID" />
+            </Principal>
+            <Dependent Role="Zakaz">
+              <PropertyRef Name="BlydoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zakaz__WaiterID__403A8C7D">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Zakaz">
+              <PropertyRef Name="WaiterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище final_1_vasilevaModelContainer">
+          <EntitySet Name="Blydo" EntityType="Self.Blydo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Smena" EntityType="Self.Smena" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zakaz" EntityType="Self.Zakaz" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Smena__UserID__3E52440B" Association="Self.FK__Smena__UserID__3E52440B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Smena" EntitySet="Smena" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zakaz__BlydoID__3F466844" Association="Self.FK__Zakaz__BlydoID__3F466844">
+            <End Role="Blydo" EntitySet="Blydo" />
+            <End Role="Zakaz" EntitySet="Zakaz" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zakaz__WaiterID__403A8C7D" Association="Self.FK__Zakaz__WaiterID__403A8C7D">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Zakaz" EntitySet="Zakaz" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="final_1_vasilevaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Blydo">
+          <Key>
+            <PropertyRef Name="BlydoID" />
+          </Key>
+          <Property Name="BlydoID" Type="Int32" Nullable="false" />
+          <Property Name="BlydoName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Zens" Type="Decimal" Precision="2" Scale="0" />
+          <NavigationProperty Name="Zakaz" Relationship="Self.FK__Zakaz__BlydoID__3F466844" FromRole="Blydo" ToRole="Zakaz" />
+        </EntityType>
+        <EntityType Name="Smena">
+          <Key>
+            <PropertyRef Name="SmenaID" />
+          </Key>
+          <Property Name="SmenaID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="SmenaDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Smena__UserID__3E52440B" FromRole="Smena" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Familia" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Otchestvo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Smena" Relationship="Self.FK__Smena__UserID__3E52440B" FromRole="Users" ToRole="Smena" />
+          <NavigationProperty Name="Zakaz" Relationship="Self.FK__Zakaz__WaiterID__403A8C7D" FromRole="Users" ToRole="Zakaz" />
+        </EntityType>
+        <EntityType Name="Zakaz">
+          <Key>
+            <PropertyRef Name="ZakazID" />
+          </Key>
+          <Property Name="ZakazID" Type="Int32" Nullable="false" />
+          <Property Name="WaiterID" Type="Int32" />
+          <Property Name="BlydoID" Type="Int32" />
+          <Property Name="ZakazStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZakazDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Blydo" Relationship="Self.FK__Zakaz__BlydoID__3F466844" FromRole="Zakaz" ToRole="Blydo" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Zakaz__WaiterID__403A8C7D" FromRole="Zakaz" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK__Zakaz__BlydoID__3F466844">
+          <End Role="Blydo" Type="Self.Blydo" Multiplicity="0..1" />
+          <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blydo">
+              <PropertyRef Name="BlydoID" />
+            </Principal>
+            <Dependent Role="Zakaz">
+              <PropertyRef Name="BlydoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Smena__UserID__3E52440B">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Smena" Type="Self.Smena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Smena">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zakaz__WaiterID__403A8C7D">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Zakaz">
+              <PropertyRef Name="WaiterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="final" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Blydo" EntityType="Self.Blydo" />
+          <EntitySet Name="Smena" EntityType="Self.Smena" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Zakaz" EntityType="Self.Zakaz" />
+          <AssociationSet Name="FK__Zakaz__BlydoID__3F466844" Association="Self.FK__Zakaz__BlydoID__3F466844">
+            <End Role="Blydo" EntitySet="Blydo" />
+            <End Role="Zakaz" EntitySet="Zakaz" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Smena__UserID__3E52440B" Association="Self.FK__Smena__UserID__3E52440B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Smena" EntitySet="Smena" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zakaz__WaiterID__403A8C7D" Association="Self.FK__Zakaz__WaiterID__403A8C7D">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Zakaz" EntitySet="Zakaz" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище final_1_vasilevaModelContainer" CdmEntityContainer="final">
+          <EntitySetMapping Name="Blydo">
+            <EntityTypeMapping TypeName="final_1_vasilevaModel.Blydo">
+              <MappingFragment StoreEntitySet="Blydo">
+                <ScalarProperty Name="BlydoID" ColumnName="BlydoID" />
+                <ScalarProperty Name="BlydoName" ColumnName="BlydoName" />
+                <ScalarProperty Name="Zens" ColumnName="Zens" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Smena">
+            <EntityTypeMapping TypeName="final_1_vasilevaModel.Smena">
+              <MappingFragment StoreEntitySet="Smena">
+                <ScalarProperty Name="SmenaID" ColumnName="SmenaID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SmenaDate" ColumnName="SmenaDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="final_1_vasilevaModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zakaz">
+            <EntityTypeMapping TypeName="final_1_vasilevaModel.Zakaz">
+              <MappingFragment StoreEntitySet="Zakaz">
+                <ScalarProperty Name="ZakazID" ColumnName="ZakazID" />
+                <ScalarProperty Name="WaiterID" ColumnName="WaiterID" />
+                <ScalarProperty Name="BlydoID" ColumnName="BlydoID" />
+                <ScalarProperty Name="ZakazStatus" ColumnName="ZakazStatus" />
+                <ScalarProperty Name="ZakazDate" ColumnName="ZakazDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

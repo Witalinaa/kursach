@@ -33,16 +33,10 @@ namespace kurs
         }
         public MainWindow(int iduser)
         {
-            InitializeComponent();
-            Manager.MainFrame = MainFrame;
-            MainFrame.Navigate(new Home());
+         
             id = iduser;
-            
-            idclient = AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).Id_client;
-             
-               
-            
-            
+
+
 
         }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -53,13 +47,11 @@ namespace kurs
 
         private void RadioButtonNews_Checked(object sender, RoutedEventArgs e)
         {
+          
             MainFrame.Navigate(new Home());
         }
 
-        private void RadioButtonAction_Checked(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new Action(id , idclient));
-        }
+        
 
 
         private void CloseApp_Click(object sender, RoutedEventArgs e)
@@ -90,26 +82,30 @@ namespace kurs
         }
 
 
-        private void Myprofile(object sender, RoutedEventArgs e)
+
+
+        private void RadioButtonAction_Checked(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new Profile(id, idclient, this));
+            MainFrame.Navigate(new zakaz());
         }
 
-   
+        private void Myprofile(object sender, RoutedEventArgs e)
+        {
+           MainFrame.Navigate(new Profile(id, idclient, this));
+        }          
 
         private void Record_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new RecordPage(id,idclient));
+            MainFrame.Navigate(new BazaPolz());
         }
+
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
            
         }
-
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new MyRecord(idclient));
-        }
+               
+        
     }
 }

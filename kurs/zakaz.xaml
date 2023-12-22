@@ -1,4 +1,4 @@
-﻿<Page x:Class="kurs.BazaPolz"
+﻿<Page x:Class="kurs.zakaz"
 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -19,12 +19,9 @@ Title="BazaPolz" Height="Auto" HorizontalAlignment="Center">
                   SelectionChanged="DGridRecords_SelectionChanged">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding Familia}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Имя" Binding="{Binding UserName}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Отчество" Binding="{Binding Otchestvo}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Почта" Binding="{Binding UserType }" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Пароль" Binding="{Binding Password}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Заказ ID" Binding="{Binding Familia}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Статус" Binding="{Binding UserName}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Время заказа" Binding="{Binding Otchestvo}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
 
         </DataGrid>

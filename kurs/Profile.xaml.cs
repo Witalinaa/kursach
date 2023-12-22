@@ -25,22 +25,20 @@ namespace kurs
       private int id;
       private int idclients;
       private MainWindow main;
-        private AutoLandDB dB = new AutoLandDB();
+        private final dB = new final();
        
-        public Profile(int iduser , int idclient, MainWindow mainWindow)
+        public Profile (int iduser , int idclient, MainWindow mainWindow)
         {
             InitializeComponent();
             main = mainWindow;
             id = iduser;
             idclients = idclient; 
-            LoginTb.Text = AutoLandDB.GetContext().User.FirstOrDefault(p => p.Id_user == id).Login;
-            NameTb.Text = AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).Name;
-            SecondNameTb.Text = AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).SecondName;
-            LastNameTb.Text = AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).LastName;
-            PhoneTb.Text = AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).Phone;
-            LoadImage.ImageSource = new BitmapImage(new Uri(AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).ImagePath)); 
-            NickNameTb.Text = AutoLandDB.GetContext().User.FirstOrDefault(p => p.Id_user == id).Login;
 
+            LoginTb.Text = final.GetContext().Users.FirstOrDefault(p => p.UserID == id).Login;
+            NameTb.Text = final.GetContext().Users.FirstOrDefault(p => p.UserID == id).UserName;
+            SecondNameTb.Text = final.GetContext().Users.FirstOrDefault(p => p.UserID == id).Familia;
+            LastNameTb.Text = final.GetContext().Users.FirstOrDefault(p => p.UserID == id).Otchestvo;
+            
             
         }
         public Profile(int iduser, int idclient)
@@ -48,40 +46,23 @@ namespace kurs
             InitializeComponent();
             id = iduser;
             idclients = idclient;
-            LoginTb.Text = AutoLandDB.GetContext().User.FirstOrDefault(p => p.Id_user == id).Login;
-            NameTb.Text = AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).Name;
-            SecondNameTb.Text = AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).SecondName;
-            LastNameTb.Text = AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).LastName;
-            PhoneTb.Text = AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).Phone;
-            LoadImage.ImageSource = new BitmapImage(new Uri(AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).ImagePath));
-            NickNameTb.Text = AutoLandDB.GetContext().User.FirstOrDefault(p => p.Id_user == id).Login;
+            LoginTb.Text = final.GetContext().Users.FirstOrDefault(p => p.UserID == id).Login;
+            NameTb.Text = final.GetContext().Users.FirstOrDefault(p => p.UserID == id).UserName;
+            SecondNameTb.Text = final.GetContext().Users.FirstOrDefault(p => p.UserID == id).Familia;
+            LastNameTb.Text = final.GetContext().Users.FirstOrDefault(p => p.UserID == id).Otchestvo;
 
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
 
-            AutoLandDB.GetContext().User.FirstOrDefault(p => p.Id_user == id).Login = LoginTb.Text;
-            AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).Name = NameTb.Text;
-            AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).SecondName = SecondNameTb.Text;
-            AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).LastName = LastNameTb.Text;
-            AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).Phone = PhoneTb.Text;
-            AutoLandDB.GetContext().SaveChanges();
+            final.GetContext().Users.FirstOrDefault(p => p.UserID == id).Login = LoginTb.Text;
+            final.GetContext().Users.FirstOrDefault(p => p.UserID == id).UserName = NameTb.Text;
+            final.GetContext().Users.FirstOrDefault(p => p.UserID == id).Familia = SecondNameTb.Text;
+            final.GetContext().Users.FirstOrDefault(p => p.UserID == id).Otchestvo = LastNameTb.Text;
+            final.GetContext().SaveChanges();
             MessageBox.Show("Вы сохранены");
-        }
-
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog ofdPicture = new OpenFileDialog();
-            ofdPicture.Filter = "Image files|*.bmp;*.jpg;*.gif;*.png;*.tif|All files|*.*";
-            ofdPicture.FilterIndex = 100;
-
-            if (ofdPicture.ShowDialog() == true)
-            {
-                LoadImage.ImageSource = new BitmapImage(new Uri(ofdPicture.FileName));
-                AutoLandDB.GetContext().Client.FirstOrDefault(p => p.Id_user == id).ImagePath = "pack://application:,,,/Images/"+ofdPicture.SafeFileName;
-                AutoLandDB.GetContext().SaveChanges();
-            }
+                        
         }
 
      
@@ -90,17 +71,14 @@ namespace kurs
         {
           
            
-                var item = AutoLandDB.GetContext().User.Where(p => p.Id_user == id).FirstOrDefault();
-                var item1 = AutoLandDB.GetContext().Client.Where(p => p.Id_user == id).FirstOrDefault();
-                var item2 = AutoLandDB.GetContext().Record.Where(p => p.Id_client == idclients).FirstOrDefault();
+                var item = final.GetContext().Users.Where(p => p.UserID == id).FirstOrDefault();
+                var item2 = final.GetContext().Smena.Where(p => p.UserID == idclients).FirstOrDefault();
                 if (item2 != null)
                 {
                     if (MessageBox.Show($"Вы точно хотите удалите данного пользователя {id}", "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                    AutoLandDB.GetContext().User.Remove(item);
-                    AutoLandDB.GetContext().Client.Remove(item1);
-                    AutoLandDB.GetContext().Record.Remove(item2);
-                    AutoLandDB.GetContext().SaveChanges();
+                    final.GetContext().Users.Remove(item);
+                    final.GetContext().SaveChanges();
                         MessageBox.Show("Вы удалили себя досвидания");
 
 
@@ -120,9 +98,9 @@ namespace kurs
                 {
                     if (MessageBox.Show($"Вы точно хотите удалите данного пользователя {id}", "Alarm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                    AutoLandDB.GetContext().User.Remove(item);
-                    AutoLandDB.GetContext().Client.Remove(item1);
-                    AutoLandDB.GetContext().SaveChanges();
+                    final.GetContext().Users.Remove(item);
+                    final.GetContext().Smena.Remove(item2);
+                    final.GetContext().SaveChanges();
                         MessageBox.Show("Вы удалили себя досвидания");
 
                         Door door = new Door();
@@ -131,16 +109,16 @@ namespace kurs
                     {
                         main.Close();
                     }
-                }
+                    }
                     else
                     {
                     MessageBox.Show("Фухх вы не удалились :)");
                     }
                
-            }
+                }
                
                
-            }
+        }
 
         private void btnBackDoor_click(object sender, RoutedEventArgs e)
         {
